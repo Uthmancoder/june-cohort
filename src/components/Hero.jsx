@@ -1,4 +1,7 @@
 import React from "react";
+import Button from "./Button";
+import CardComponent from "./CardComponent";
+import CarouselSlide from "./Carousel";
 
 const Hero = () => {
   return (
@@ -41,7 +44,41 @@ const Hero = () => {
           expedita esse exercitationem quibusdam voluptates, debitis, quia
           officiis quidem.
         </p>
+        <Button
+          handleClick={() => alert("Button Clicked")}
+          className={"py-3 px-6 rounded-full bg-green-600 text-white"}
+          textContent={"Click Me"}
+        />
       </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 px-5 md:px-10 lg:px-20 py-6">
+        <CardComponent
+          image={"https://edu.sqi.ng/wp-content/uploads/2023/06/college.jpg"}
+          title={"National Innovative Diploma (NID)"}
+          text={
+            "The National Innovation Diploma (NID) offered at SQI College of ICT is a 2 year approved academic program of the National Board for Technical Education (NBTE)."
+          }
+          learnMore={"Learn More"}
+        />
+        <CardComponent
+          image={"https://edu.sqi.ng/wp-content/uploads/2023/06/college.jpg"}
+          title={"National Innovative Diploma (NID)"}
+          text={
+            "The National Innovation Diploma (NID) offered at SQI College of ICT is a 2 year approved academic program of the National Board for Technical Education (NBTE)."
+          }
+          learnMore={"Learn More"}
+        />
+        <CardComponent
+          image={"https://edu.sqi.ng/wp-content/uploads/2023/06/college.jpg"}
+          title={"National Innovative Diploma (NID)"}
+          text={
+            "The National Innovation Diploma (NID) offered at SQI College of ICT is a 2 year approved academic program of the National Board for Technical Education (NBTE)."
+          }
+          learnMore={"Learn More"}
+        />
+      </div>
+
+      <CarouselSlide />
     </div>
   );
 };

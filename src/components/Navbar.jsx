@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 // const reactClass = {
 //   backgroundColor: "red",
@@ -8,9 +9,17 @@ import React from "react";
 // };
 
 const Navbar = () => {
+  const HandleSignUp = () => {
+    alert("Signing Up");
+  };
+
+  const handleLogin = () => {
+    alert("Logging User In");
+  };
+
   return (
     <div className="flex  items-center justify-between bg-gray-300 p-3">
-      <h1>NavBar</h1>
+      <h1 className="font-bold text-2xl">Logo</h1>
       <ul className="flex gap-5">
         <li>Home</li>
         <li>About</li>
@@ -19,12 +28,16 @@ const Navbar = () => {
       </ul>
 
       <div className="flex gap-5">
-        <button className="py-2 px-5 border border-slate-900 rounded-lg">
-          Sign Up
-        </button>
-        <button className="py-2 px-5 bg-slate-800 text-white rounded-lg">
-          Log In
-        </button>
+        <Button
+          handleClick={HandleSignUp}
+          className={"py-2 px-5 rounded-md bg-indigo-800  text-white"}
+          textContent={"Sign Up"}
+        />
+        <Button
+          handleClick={handleLogin}
+          className={"py-2 px-5 rounded-md border border-slate-800  text-black"}
+          textContent={"Log In"}
+        />
       </div>
     </div>
   );
