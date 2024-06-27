@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 // const reactClass = {
 //   backgroundColor: "red",
@@ -21,10 +22,18 @@ const Navbar = () => {
     <div className="flex  items-center justify-between bg-gray-300 p-3">
       <h1 className="font-bold text-2xl">Logo</h1>
       <ul className="flex gap-5">
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-        <li>Services</li>
+        <li>
+          <Link to={"/"}>Home</Link>
+        </li>
+        <li>
+          <Link to={"/about"}>About</Link>
+        </li>
+        <li>
+          <Link to={"/contact"}>Contact</Link>
+        </li>
+        <li>
+          <Link to={"/services"}>Services</Link>
+        </li>
       </ul>
 
       <div className="flex gap-5">

@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
 import CardComponent from "./CardComponent";
 import CarouselSlide from "./Carousel";
 
 const Hero = () => {
+  const [increaseCount, setincreaseCount] = useState(0);
+  useEffect(() => {
+    function LoadData() {
+      // setInterval(() => {
+      console.log("Hello");
+      // }, 1000);
+    }
+    LoadData();
+  }, []);
+
+  const handleClick = () => {
+    setincreaseCount((prevCount) => prevCount + 1);
+  };
+
   return (
     <div>
       <div className="max-w-[1200px] mx-auto my-5 bg-indigo-100 p-4">
@@ -45,7 +59,7 @@ const Hero = () => {
           officiis quidem.
         </p>
         <Button
-          handleClick={() => alert("Button Clicked")}
+          handleClick={handleClick}
           className={"py-3 px-6 rounded-full bg-green-600 text-white"}
           textContent={"Click Me"}
         />
@@ -78,7 +92,7 @@ const Hero = () => {
         />
       </div>
 
-      <CarouselSlide />
+      {/* <CarouselSlide /> */}
     </div>
   );
 };
