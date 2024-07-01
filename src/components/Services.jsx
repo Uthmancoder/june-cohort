@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Services = () => {
   const [Products, setProducts] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
@@ -14,6 +16,7 @@ const Services = () => {
 
   const handleViewDetails = (id) => {
     console.log("Product Id : ", id);
+    navigate(`/view-details/${id}`);
   };
 
   return (

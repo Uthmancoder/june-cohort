@@ -34,6 +34,9 @@ const Navbar = () => {
         <li>
           <Link to={"/services"}>Services</Link>
         </li>
+        <li>
+          <Link to={"/what-we-offer"}>What We Offer</Link>
+        </li>
       </ul>
 
       <div className="flex gap-5">
