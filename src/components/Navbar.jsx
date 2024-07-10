@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // const reactClass = {
 //   backgroundColor: "red",
@@ -10,8 +10,9 @@ import { Link } from "react-router-dom";
 // };
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const HandleSignUp = () => {
-    alert("Signing Up");
+    navigate("/sign-up");
   };
 
   const handleLogin = () => {
@@ -36,6 +37,9 @@ const Navbar = () => {
         </li>
         <li>
           <Link to={"/what-we-offer"}>What We Offer</Link>
+        </li>
+        <li>
+          <Link to={"/add-product"}>Ad Products</Link>
         </li>
       </ul>
 

@@ -9,6 +9,8 @@ import ParentConponent from "./components/ParentConponent";
 import Childone from "./components/Childone";
 import ChildTwo from "./components/ChildTwo";
 import ChildThree from "./components/ChildThree";
+import SignUp from "./components/SignUp";
+import AddProduct from "./components/AddProduct";
 
 const App = () => {
   return (
@@ -17,8 +19,10 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/services" element={<Services />} />
         <Route path="/view-details/:id" element={<ViewDetails />} />
+        <Route path="/add-product" element={<AddProduct />} />
         <Route path="/what-we-offer" element={<ParentConponent />}>
           <Route index element={<Childone />} />
           <Route path="child-two" element={<ChildTwo />} />

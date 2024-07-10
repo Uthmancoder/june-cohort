@@ -1,22 +1,36 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Services = () => {
   const [Products, setProducts] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    fetch("http://localhost:9197/AllProduct")
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
         setProducts(json);
       });
-  }, []);
+  }, [Products]);
 
-  const handleViewDetails = (id) => {
+  const handleEdit = (id) => {
     console.log("Product Id : ", id);
-    navigate(`/view-details/${id}`);
+  };
+  const handleDelete = async (id) => {
+    console.log("Product Id : ", id);
+    try {
+      const response = await axios.delete(
+        `http://localhost:9197/AllProduct/${id}`
+      );
+      console.log("Deleted Product : ", response.data);
+      toast.success("Product Deleted Successfully");
+    } catch (error) {
+      console.log("Error Deleting Product : ", error);
+      toast.error("Error deleting Product");
+    }
   };
 
   return (
@@ -24,8 +38,8 @@ const Services = () => {
       <Navbar />
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 p-6 md:p-10 lg:p-16">
         {Products.map((data) => (
-          <div key={data.id} className="border-2 p-5 rounded-lg h-full">
-            <div className="w-full h-[250px] md:max-w-[250px] mx-auto">
+          <div key={data.id} className="border-2 p-5 rounded-lg h-fit ">
+            <div className="w-full h-[200px] md:max-w-[250px] mx-auto">
               <img className="w-full h-full" src={data.image} alt="" />
             </div>
             <div className="grid gap-2 max-h-[160px] h-full overflow-y-auto">
@@ -37,14 +51,17 @@ const Services = () => {
             </div>
 
             <div className="flex items-center justify-between gap-4">
-              <button className="bg-slate-800 text-xs py-2 px-5 rounded-lg text-white">
-                Add To Cart
+              <button
+                onClick={() => handleEdit(data.id)}
+                className="bg-green-800 text-xs py-2 px-5 rounded-lg text-white"
+              >
+                Edit
               </button>
               <button
-                onClick={() => handleViewDetails(data.id)}
-                className="bg-slate-800 text-xs  py-2 px-5 rounded-lg text-white"
+                onClick={() => handleDelete(data.id)}
+                className="bg-red-800 text-xs  py-2 px-5 rounded-lg text-white"
               >
-                View Details
+                Delete
               </button>
             </div>
           </div>
