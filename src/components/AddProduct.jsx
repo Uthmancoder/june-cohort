@@ -5,6 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MakePayment from "./Payment";
+import {
+  addProduct,
+  removeProduct,
+  increaseCount,
+  decreaseCount,
+} from "../Redux/AllProducts";
+import { useSelector, useDispatch } from "react-redux";
 
 const AddProduct = () => {
   const [productName, setproductName] = useState("");
@@ -13,6 +20,10 @@ const AddProduct = () => {
   const [productDescription, setproductDescription] = useState("");
   const [productImage, setproductImage] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { NumberCount } = useSelector((state) => state.AllProducts);
+  console.log("Number Count : ", NumberCount);
 
   const handleAddProduct = async (ev) => {
     ev.preventDefault();
@@ -25,12 +36,12 @@ const AddProduct = () => {
         image: productImage,
       };
       console.log("Product Info : ", productDetails);
-
-      const response = await axios.post(
-        "http://localhost:9197/AllProduct",
-        productDetails
-      );
-      console.log("Response Data : ", response.data);
+      dispatch(addProduct(productDetails));
+      // const response = await axios.post(
+      //   "http://localhost:9197/AllProduct",
+      //   productDetails
+      // );
+      // console.log("Response Data : ", response.data);
 
       toast.success("Product Uploaded Successfully");
       setTimeout(() => {
@@ -40,6 +51,14 @@ const AddProduct = () => {
       alert("Error Posting Product");
       console.log("Error");
     }
+  };
+
+  const handleIncreaseCount = () => {
+    dispatch(increaseCount());
+  };
+
+  const handleDecreaseCount = () => {
+    dispatch(decreaseCount());
   };
 
   const handleImageUpload = (ev) => {
@@ -56,6 +75,21 @@ const AddProduct = () => {
   return (
     <div>
       <Navbar />
+      <div className="flex items-center justify-center gap-2">
+        <button
+          onClick={handleIncreaseCount}
+          className="py-2 px-4 rounded-md bg-black text-white"
+        >
+          Increase Count
+        </button>
+        <p className="mx-5 text-black">{NumberCount}</p>
+        <button
+          onClick={handleDecreaseCount}
+          className="py-2 px-4 rounded-md bg-blue-600 text-white"
+        >
+          Decrease Count
+        </button>
+      </div>
       <form
         action=""
         className="w-full md:w-1/2 lg:w-5/12 rounded-md  p-4 bg-slate-50 shadow-lg mx-auto  my-8"

@@ -3,18 +3,21 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Services = () => {
   const [Products, setProducts] = useState([]);
+  const AllProducts = useSelector((state) => state.AllProducts);
+  console.log("All Products : ", AllProducts);
   const navigate = useNavigate();
-  useEffect(() => {
-    fetch("http://localhost:9197/AllProduct")
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        setProducts(json);
-      });
-  }, [Products]);
+  // useEffect(() => {
+  //   fetch("http://localhost:9197/AllProduct")
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       console.log(json);
+  //       setProducts(json);
+  //     });
+  // }, [Products]);
 
   const handleEdit = (id) => {
     console.log("Product Id : ", id);
@@ -37,7 +40,7 @@ const Services = () => {
     <div>
       <Navbar />
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 p-6 md:p-10 lg:p-16">
-        {Products.map((data) => (
+        {AllProducts.map((data) => (
           <div key={data.id} className="border-2 p-5 rounded-lg h-fit ">
             <div className="w-full h-[200px] md:max-w-[250px] mx-auto">
               <img className="w-full h-full" src={data.image} alt="" />
